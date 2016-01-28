@@ -1,0 +1,13 @@
+socialsitetemplate/settings/db_password.py
+*.sqlite
+*.sqlite3
+socialsitetemplate/settings/localVars.py
+socialsitetemplate/localVars.py
+*.pyc
+
+#venv
+/bin
+/include
+/lib
+/local
+

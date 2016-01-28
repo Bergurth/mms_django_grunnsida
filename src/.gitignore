@@ -1,0 +1,6 @@
+socialsitetemplate/settings/db_password.py
+*.sqlite
+socialsitetemplate/settings/localVars.py
+socialsitetemplate/localVars.py
+*.pyc
+
