@@ -6,6 +6,8 @@ from .forms import SignUpForm
 from .models import SignUp
 #from .models import Organization
 from .models import Org
+from .models import Student
+
 
 class SignUpAdmin(admin.ModelAdmin):
 	list_display = ["__unicode__", "timestamp", "updated"]
@@ -20,9 +22,17 @@ class OrganizationAdmin(admin.ModelAdmin):
 
 class MembershipInline(admin.TabularInline):
     model = Org.members.through
+    verbose_name = "member"
+    verbose_name_plural = "members"
+
+
 
 class OrgadminInline(admin.TabularInline):
-	model = Org.org_admins.through
+    model = Org.org_admins.through
+    verbose_name = "admin"
+    verbose_name_plural = "admins"
+    #verbose_name = "admin"
+    #verbose_name_plural = "admins"
 
 """
 class PersonAdmin(admin.ModelAdmin):
@@ -38,9 +48,15 @@ class OrgAdmin(admin.ModelAdmin):
     ]
     exclude = ('members','org_admins',)
 
+class StudentAdmin(admin.ModelAdmin):
+    """docstring for StudentAdmin"""
+    list_display = ["__unicode__"]
+    exclude = ('users',)
 
+        
 
 
 admin.site.register(SignUp, SignUpAdmin)
 #admin.site.register(Organization, OrganizationAdmin)
 admin.site.register(Org, OrgAdmin)
+admin.site.register(Student, StudentAdmin)

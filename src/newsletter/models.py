@@ -48,6 +48,35 @@ class Org(models.Model):
 	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 	updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
+	#parent_org = models.ForeignKey(Org, on_delete=models.CASCADE, blank=True)
+	org_exec = models.ForeignKey(User, blank=True, related_name='org_exec', null=True)
+	#org_type = models.ForeignKey(OrgType, blank=True, null=True)
+
+
 	def __unicode__(self):
 		return self.name
+
+'''
+class OrgType(models.Model):
+	name = models.CharField(max_length=128)
+	description = models.CharField(max_length=520, blank=True, null=True)
+	# ParentType somthing that can be null refrencing a parent type.
+
+'''
+
+class Student(models.Model):
+	ss_number = models.IntegerField(primary_key=True)
+	name = models.CharField(max_length=228)
+	date_of_birth = models.DateTimeField(blank=True, null=True)
+	sex = models.IntegerField(blank=True, null=True)
+	user = models.ForeignKey(User, blank=True, related_name='student_user', null=True, unique=True)
+
+	def __unicode__(self):
+		return self.name
+
+
+
+
+
+
 
