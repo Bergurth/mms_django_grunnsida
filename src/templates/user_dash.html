@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<div class='row'>
+<div class='col-sm-6 col-sm-offset-3'>
+<h1>User Dash</h1>
+<p>Organizations menu.</p>
+{% if user_info %}
+	<p>{{user_info }}</p>
+	<p> {{user_id}}</p>
+	<p> {{orgs}}</p>
+
+{% endif %}
+
+</div>
+
+</div>
+
+
+{% endblock %}

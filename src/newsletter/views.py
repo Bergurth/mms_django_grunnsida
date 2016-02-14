@@ -4,6 +4,7 @@ from django.shortcuts import render
 
 from .forms import ContactForm, SignUpForm
 from .models import SignUp
+from .models import Org
 
 # Create your views here.
 def home(request):
@@ -85,9 +86,31 @@ def contact(request):
 
 
 
+def userDash(request):
+	if request.user.is_authenticated():
+		#print(SignUp.objects.all())
+		# i = 1
+		# for instance in SignUp.objects.all():
+		# 	print(i)
+		# 	print(instance.full_name)
+		# 	i += 1
 
 
+		org_qs = Org.objects.filter(members=request.user.id)
+		context = {
 
+			"user_info": str(request.user),
+			"user_id": str(request.user.id),
+			"orgs": str(org_qs),
+		}
+		"""
+			context = {
+				"queryset": queryset
+			}
+
+		return render(request, "home.html", context)
+		"""
+		return render(request, "user_dash.html", context)
 
 
 

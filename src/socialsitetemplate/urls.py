@@ -13,6 +13,7 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^user-dash', 'newsletter.views.userDash', name='user-dash'),
 ]
 
 if settings.DEBUG:

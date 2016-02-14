@@ -64,6 +64,8 @@ class OrgType(models.Model):
 
 '''
 
+
+
 class Student(models.Model):
 	ss_number = models.IntegerField(primary_key=True)
 	name = models.CharField(max_length=228)
