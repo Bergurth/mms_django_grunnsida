@@ -7,10 +7,14 @@
 <div class='row'>
 <div class='col-sm-6 col-sm-offset-3'>
 <h1>User Dash</h1>
-<p>Organizations menu.</p>
 {% if user_info %}
-	<p>{{user_info }}</p>
+<p>{{user_info }}</p>
 	<p> {{user_id}}</p>
+{% endif %}
+
+<h2>Organizations menu.</h2>
+{% if user_info %}
+	
 	<p> {{orgs}}</p>
 
 {% endif %}
