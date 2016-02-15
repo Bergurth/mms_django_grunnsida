@@ -96,12 +96,15 @@ def userDash(request):
 		# 	i += 1
 
 
-		org_qs = Org.objects.filter(members=request.user.id)
+		#org_qs = Org.objects.filter(members=request.user.id)
+
+		org_qs = Org.objects.filter(members=request.user.id).order_by('name')
+
 		context = {
 
 			"user_info": str(request.user),
 			"user_id": str(request.user.id),
-			"orgs": str(org_qs),
+			"orgs": org_qs,
 		}
 		"""
 			context = {
@@ -112,6 +115,32 @@ def userDash(request):
 		"""
 		return render(request, "user_dash.html", context)
 
+
+
+
+def orgView(request, id):
+	if request.user.is_authenticated():
+		#print(SignUp.objects.all())
+		# i = 1
+		# for instance in SignUp.objects.all():
+		# 	print(i)
+		# 	print(instance.full_name)
+		# 	i += 1
+
+
+		org_qs = Org.objects.filter(members=request.user.id).filter(id=id).order_by('name')
+
+
+		context = {
+
+		"orginfo" : "bla",
+		"id": id,
+		"orgs": org_qs,
+
+		}
+
+		#org_qs = Org.objects.filter(members=request.user.id)
+		return render(request, "org_view.html", context)
 
 
 

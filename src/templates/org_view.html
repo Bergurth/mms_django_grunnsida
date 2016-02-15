@@ -4,28 +4,14 @@
 
 {% block content %}
 
-<div class='row'>
-<div class='col-sm-6 col-sm-offset-3'>
-<h1>User Dash</h1>
 
-<!--
-{% if user_info %}
-<p>{{user_info }}</p>
-	<p> {{user_id}}</p>
-{% endif %}
--->
-<!--
-<h2>Organizations menu.</h2>
-{% if user_info %}
-	
-	<p> {{orgs}}</p>
 
+{% if orginfo %}
+<p>{{orginfo }}</p>
+	<p>{{id}}</p>
 {% endif %}
 
-</div>
 
-</div>
--->
 {% if request.user.is_authenticated %}
 
 
@@ -43,5 +29,4 @@
  {% endif %}
 
 
- {% endblock %}
-
+{% endblock %}
