@@ -17,6 +17,13 @@
 
 	{% if orgs %}
 	<h2>Organization menu.</h2>
+	{% for instance in orgs %}
+		<h3>{{ instance.name }} </h3>
+	  <p> {{ instance.description }} </p>
+
+
+	{% endfor %}
+
 	<table class='table'>
 	{% for instance in orgs %}
 		<tr><td>{{ forloop.counter }}</td><td>{{ instance.name }}</td><td>{{ instance.timestamp|timesince }} ago</td></tr>
@@ -26,7 +33,19 @@
 
 	{% endif %}
 
+{% if is_admin %}
+	<h4> You are admin </h4>
+{% endif %}
+
+</hr>
+
+{% if is_exec %}
+	<h4> You are exec </h4>
+{% endif %}
+
  {% endif %}
+
+
 
 
 {% endblock %}

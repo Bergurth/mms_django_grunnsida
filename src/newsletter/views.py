@@ -89,15 +89,6 @@ def contact(request):
 
 def userDash(request):
 	if request.user.is_authenticated():
-		#print(SignUp.objects.all())
-		# i = 1
-		# for instance in SignUp.objects.all():
-		# 	print(i)
-		# 	print(instance.full_name)
-		# 	i += 1
-
-
-		#org_qs = Org.objects.filter(members=request.user.id)
 
 		org_qs = Org.objects.filter(members=request.user.id).order_by('name')
 
@@ -107,47 +98,57 @@ def userDash(request):
 			"user_id": str(request.user.id),
 			"orgs": org_qs,
 		}
-		"""
-			context = {
-				"queryset": queryset
-			}
-
-		return render(request, "home.html", context)
-		"""
+	
 		return render(request, "user_dash.html", context)
+	else:
+		return redirect(settings.LOGIN_REDIRECT_URL)
 
 
 
 # information and managment for org members and admis, as well as exec
 def orgView(request, id):
 	if request.user.is_authenticated():
-		#print(SignUp.objects.all())
-		# i = 1
-		# for instance in SignUp.objects.all():
-		# 	print(i)
-		# 	print(instance.full_name)
-		# 	i += 1
-
-
+	
 		org_qs = Org.objects.filter(members=request.user.id).filter(id=id).order_by('name')
 
+		if org_qs:
 
-		context = {
+			admin= False
 
-		"orginfo" : "bla",
-		"id": id,
-		"orgs": org_qs,
+			description = ''
 
-		}
+			if (org_qs):
+				description = org_qs[0].description
 
-		#org_qs = Org.objects.filter(members=request.user.id)
-		return render(request, "org_view.html", context)
+				admin = org_qs.filter(org_admins=request.user.id).filter(id=id)
+
+			 	is_exec = org_qs.filter(org_exec=request.user.id).filter(id=id)
+
+			context = {
+
+		
+			"id": id,
+			"orgs": org_qs,
+			"org_description": description,
+			"is_admin": admin,
+			"is_exec": is_exec,
+
+			}
+
+			#org_qs = Org.objects.filter(members=request.user.id)
+			return render(request, "org_view.html", context)
+		else:
+			return redirect(settings.LOGIN_REDIRECT_URL)
+	else:
+		return redirect(settings.LOGIN_REDIRECT_URL)
 
 
 
 def orgs(request):
-	return redirect('newsletter.views.userDash')
-
+	if request.user.is_authenticated():
+		return redirect('newsletter.views.userDash')
+	else:
+		return redirect(settings.LOGIN_REDIRECT_URL)
 
 
 
