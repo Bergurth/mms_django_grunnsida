@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-
+  
 
 {% block content %}
 
@@ -33,7 +33,8 @@
 	<h2>Organization menu.</h2>
 	<table class='table'>
 	{% for instance in orgs %}
-		<tr><td>{{ forloop.counter }}</td><td>{{ instance.name }}</td><td>{{ instance.timestamp|timesince }} ago</td></tr>
+		<!-- <a href="url">link text</a>       <a href=" url 'org-view' ">Contact</a> -->
+		<tr><td>{{ forloop.counter }}</td><td> <a href="{% url 'newsletter.views.orgs' %}{{instance.id}}">{{ instance.name }}</a></td><td>{{ instance.timestamp|timesince }} ago</td></tr>
 
 	{% endfor %}
 	</table>

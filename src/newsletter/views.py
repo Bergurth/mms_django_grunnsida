@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 from .forms import ContactForm, SignUpForm
 from .models import SignUp
@@ -117,7 +118,7 @@ def userDash(request):
 
 
 
-
+# information and managment for org members and admis, as well as exec
 def orgView(request, id):
 	if request.user.is_authenticated():
 		#print(SignUp.objects.all())
@@ -144,7 +145,8 @@ def orgView(request, id):
 
 
 
-
+def orgs(request):
+	return redirect('newsletter.views.userDash')
 
 
 
