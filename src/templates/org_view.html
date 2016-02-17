@@ -43,6 +43,18 @@
 	<h4> You are exec </h4>
 {% endif %}
 
+{% if is_exec or is_admin %}
+ 	{% if members %}
+ 	<h4>Members</h4>
+ 	<table class='table'>
+ 		{% for instance in members %}
+ 			<tr><td>{{ forloop.counter }}</td><td>{{ instance.username }}</td><td>{{ instance.email }}</td><td>{{ instance.date_joined|timesince }} ago</td></tr>
+
+ 		{% endfor %}
+ 	</table>
+ 	{% endif %}
+{% endif %}
+
  {% endif %}
 
 
