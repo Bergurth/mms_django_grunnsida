@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render
 from django.shortcuts import redirect
 
-from .forms import ContactForm, SignUpForm
+from .forms import ContactForm, SignUpForm, OrgForm
 from .models import SignUp
 from .models import Org
 
@@ -141,6 +141,56 @@ def orgView(request, id):
 			return redirect(settings.LOGIN_REDIRECT_URL)
 	else:
 		return redirect(settings.LOGIN_REDIRECT_URL)
+
+
+def orgEdit(request, id=None):
+	if request.user.is_authenticated():
+
+		# this is the case of modifying an existing org
+		if id:
+
+			org_qs = Org.objects.filter(org_exec=request.user.id).filter(id=id).order_by('name')
+			if org_qs:
+				title = 'Edit Org'
+				title_align_center = True
+
+				org = Org.objects.get(pk=id)
+				#form = OrgForm(instance=org)
+				if request.method == 'POST':
+					form = OrgForm(request.POST, instance=org)
+					form.save()
+
+				else:
+					form = OrgForm(instance=org)
+				
+				context = {
+					"form": form,
+					"title": title,
+					"title_align_center": title_align_center,
+					}
+				return render(request, "forms.html", context)
+			else:
+				# user is not exec of said org.
+				return render(request, "403.html")
+		else:
+			# no org id specified.  ------------------------> creating New org.
+			
+			title = 'Edit Org'
+			title_align_center = True
+			if request.method == 'POST':
+					form = OrgForm(request.POST)
+					form.save()
+			else:
+				form = OrgForm(None)
+
+			context = {
+					"form": form,
+					"title": title,
+					"title_align_center": title_align_center,
+					}
+			return render(request, "forms.html", context)
+			
+
 
 
 

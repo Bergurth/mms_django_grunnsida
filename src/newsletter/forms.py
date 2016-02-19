@@ -1,6 +1,7 @@
 from django import forms
 
 from .models import SignUp
+from .models import Org
 
 class ContactForm(forms.Form):
 	full_name = forms.CharField(required=False)
@@ -28,3 +29,10 @@ class SignUpForm(forms.ModelForm):
 		full_name = self.cleaned_data.get('full_name')
 		#write validation code.
 		return full_name
+
+
+class OrgForm(forms.ModelForm):
+	class Meta:
+		model = Org
+		fields = ['name','description','members','org_admins','org_exec']
+		

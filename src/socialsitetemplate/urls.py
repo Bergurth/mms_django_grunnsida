@@ -20,6 +20,11 @@ urlpatterns = [
     url(r'^org/(?P<id>[\w{}.-]{1,40})/$', 'newsletter.views.orgView', name='org-view'),
     #/(?P<id>[\w{}.-]{1,40})/$
     #url(r'^org/', 'newsletter.views.orgView', name='org-view'),
+
+    # org edit
+    url(r'^org-edit/(?P<id>[\w{}.-]{1,40})/$', 'newsletter.views.orgEdit', name='org-edit'),
+    # for creating new orgs.
+    url(r'^org-edit/$','newsletter.views.orgEdit', name='org-edit'),
 ]
 
 if settings.DEBUG:
