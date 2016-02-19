@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from .forms import ContactForm, SignUpForm, OrgForm
 from .models import SignUp
 from .models import Org
+from django.contrib.auth.models import User
 
 # Create your views here.
 def home(request):
@@ -112,18 +113,16 @@ def orgView(request, id):
 		org_qs = Org.objects.filter(members=request.user.id).filter(id=id).order_by('name')
 
 		if org_qs:
+			
+			description = org_qs[0].description
 
-			admin= False
+			admin = org_qs.filter(org_admins=request.user.id).filter(id=id)
 
-			description = ''
+		 	is_exec = org_qs.filter(org_exec=request.user.id).filter(id=id)
 
-			if (org_qs):
-				description = org_qs[0].description
+		 	members = User.objects.filter(orgs=id)
 
-				admin = org_qs.filter(org_admins=request.user.id).filter(id=id)
-
-			 	is_exec = org_qs.filter(org_exec=request.user.id).filter(id=id)
-
+		 	
 			context = {
 
 		
@@ -132,6 +131,7 @@ def orgView(request, id):
 			"org_description": description,
 			"is_admin": admin,
 			"is_exec": is_exec,
+			"members": members,
 
 			}
 
