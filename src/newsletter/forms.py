@@ -3,6 +3,10 @@ from django import forms
 from .models import SignUp
 from .models import Org
 
+from django.forms.models import inlineformset_factory
+from django.contrib.auth.models import User
+
+
 class ContactForm(forms.Form):
 	full_name = forms.CharField(required=False)
 	email = forms.EmailField()
@@ -35,4 +39,9 @@ class OrgForm(forms.ModelForm):
 	class Meta:
 		model = Org
 		fields = ['name','description','members','org_admins','org_exec']
+		widgets = {
+            'members': forms.CheckboxSelectMultiple(),
+            'org_admins': forms.CheckboxSelectMultiple()
+        }
+		
 		
