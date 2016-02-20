@@ -32,6 +32,10 @@ def home(request):
 			"title": "Thank you"
 		}
 
+	if request.user.is_authenticated():
+
+		return redirect('newsletter.views.userDash')
+
 	if request.user.is_authenticated() and request.user.is_staff:
 		#print(SignUp.objects.all())
 		# i = 1
@@ -95,7 +99,7 @@ def userDash(request):
 
 		context = {
 
-			"user_info": str(request.user),
+			"user_name": str(request.user),
 			"user_id": str(request.user.id),
 			"orgs": org_qs,
 		}
@@ -168,7 +172,7 @@ def orgEdit(request, id=None):
 					"title": title,
 					"title_align_center": title_align_center,
 					}
-				return render(request, "forms.html", context)
+				return render(request, "org_form.html", context)
 			else:
 				# user is not exec of said org.
 				return render(request, "403.html")
@@ -188,7 +192,7 @@ def orgEdit(request, id=None):
 					"title": title,
 					"title_align_center": title_align_center,
 					}
-			return render(request, "forms.html", context)
+			return render(request, "org_form.html", context)
 			
 
 

@@ -40,6 +40,7 @@ class OrgForm(forms.ModelForm):
 		model = Org
 		fields = ['name','description','members','org_admins','org_exec']
 		widgets = {
+			'description': forms.Textarea(),
             'members': forms.CheckboxSelectMultiple(),
             'org_admins': forms.CheckboxSelectMultiple()
         }
