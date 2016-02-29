@@ -14,3 +14,15 @@
     background-color: #0087c3;
 }
 
+.well{
+	overflow: hidden;
+	overflow-y: scroll;
+	height: 130px;
+}
+
+.checkbox{
+    overflow: auto; 
+    height: 80px;
+    width:150px;
+}
+

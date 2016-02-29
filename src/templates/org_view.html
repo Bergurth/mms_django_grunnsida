@@ -55,6 +55,10 @@
  	{% endif %}
 {% endif %}
 
+{% if is_exec %}
+  <a href="{% url 'newsletter.views.orgEdit' %}{{ id }}">edit organization</a>
+{% endif %}
+
  {% endif %}
 
 

@@ -8,16 +8,20 @@ body {
   border-color: #1A5F23;
 }
 
+.navbar-default .navbar-nav>li>a {
+	color: #2C0BD2 !important;
+} 
+
 .navbar-default .navbar-brand {
   color: #FFF;
 }
 
 .navbar-default .navbar-brand:hover {
-  color: #777;
+  color: black;
 }
 
 .navbar-default .navbar-nav>li>a:hover {
-  color: #999;
+  color: black !important;
 }
 
 .navbar-default .navbar-toggle {
@@ -29,5 +33,5 @@ body {
 }
 
 .navbar-toggle {
-	background-color: #0E3D14 !important;
+	background-color: #0087c3 !important;
 }
