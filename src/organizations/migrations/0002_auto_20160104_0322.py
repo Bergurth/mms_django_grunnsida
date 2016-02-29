@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('newsletter', '0001_initial'),
+        ('organizations', '0001_initial'),
     ]
 
     operations = [
@@ -29,13 +29,13 @@ class Migration(migrations.Migration):
                 ('timestamp', models.DateTimeField(auto_now_add=True)),
                 ('updated', models.DateTimeField(auto_now=True)),
                 ('group_founder', models.ForeignKey(related_name='profile', to=settings.AUTH_USER_MODEL, unique=True)),
-                ('members', models.ManyToManyField(to=settings.AUTH_USER_MODEL, through='newsletter.Membership')),
+                ('members', models.ManyToManyField(to=settings.AUTH_USER_MODEL, through='organizations.Membership')),
             ],
         ),
         migrations.AddField(
             model_name='membership',
             name='organization',
-            field=models.ForeignKey(to='newsletter.Organization'),
+            field=models.ForeignKey(to='organizations.Organization'),
         ),
         migrations.AddField(
             model_name='membership',

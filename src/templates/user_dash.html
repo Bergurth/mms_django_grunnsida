@@ -34,7 +34,7 @@
 	<table class='table'>
 	{% for instance in orgs %}
 		<!-- <a href="url">link text</a>       <a href=" url 'org-view' ">Contact</a> -->
-		<tr><td>{{ forloop.counter }}</td><td> <a href="{% url 'newsletter.views.orgs' %}{{instance.id}}">{{ instance.name }}</a></td><td>{{ instance.timestamp|timesince }} ago</td></tr>
+		<tr><td>{{ forloop.counter }}</td><td> <a href="{% url 'organizations.views.orgs' %}{{instance.id}}">{{ instance.name }}</a></td><td>{{ instance.timestamp|timesince }} ago</td></tr>
 
 	{% endfor %}
 	</table>

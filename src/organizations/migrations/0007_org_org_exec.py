@@ -9,13 +9,13 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('newsletter', '0004_auto_20160118_1422'),
+        ('organizations', '0006_auto_20160118_1521'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='org',
-            name='org_admins',
-            field=models.ManyToManyField(to=settings.AUTH_USER_MODEL),
+            name='org_exec',
+            field=models.ForeignKey(related_name='org_exec', blank=True, to=settings.AUTH_USER_MODEL, null=True),
         ),
     ]

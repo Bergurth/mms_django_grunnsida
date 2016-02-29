@@ -34,7 +34,7 @@ def home(request):
 
 	if request.user.is_authenticated():
 
-		return redirect('newsletter.views.userDash')
+		return redirect('organizations.views.userDash')
 
 	if request.user.is_authenticated() and request.user.is_staff:
 		#print(SignUp.objects.all())
@@ -200,7 +200,7 @@ def orgEdit(request, id=None):
 
 def orgs(request):
 	if request.user.is_authenticated():
-		return redirect('newsletter.views.userDash')
+		return redirect('organizations.views.userDash')
 	else:
 		return redirect(settings.LOGIN_REDIRECT_URL)
 

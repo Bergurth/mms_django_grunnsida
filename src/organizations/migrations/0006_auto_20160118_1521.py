@@ -8,7 +8,7 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('newsletter', '0005_org_org_admins'),
+        ('organizations', '0005_org_org_admins'),
     ]
 
     operations = [

@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('newsletter', '0007_org_org_exec'),
+        ('organizations', '0007_org_org_exec'),
     ]
 
     operations = [
