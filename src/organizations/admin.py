@@ -7,6 +7,7 @@ from .models import SignUp
 #from .models import Organization
 from .models import Org
 from .models import Student
+from .models import Class
 
 
 class SignUpAdmin(admin.ModelAdmin):
@@ -34,6 +35,12 @@ class OrgadminInline(admin.TabularInline):
     #verbose_name = "admin"
     #verbose_name_plural = "admins"
 
+
+class ClassStudentsInline(admin.TabularInline):
+    model = Class.students.through
+    verbose_name = "student"
+    verbose_name_plural = "students"
+
 """
 class PersonAdmin(admin.ModelAdmin):
     inlines = [
@@ -53,10 +60,16 @@ class StudentAdmin(admin.ModelAdmin):
     list_display = ["__unicode__"]
     exclude = ('users',)
 
-        
+class ClassAdmin(admin.ModelAdmin):
+
+       inlines = [
+        ClassStudentsInline,
+       ] 
+       exclude = ('students',)
 
 
 admin.site.register(SignUp, SignUpAdmin)
 #admin.site.register(Organization, OrganizationAdmin)
 admin.site.register(Org, OrgAdmin)
 admin.site.register(Student, StudentAdmin)
+admin.site.register(Class, ClassAdmin)

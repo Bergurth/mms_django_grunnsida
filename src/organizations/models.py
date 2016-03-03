@@ -67,7 +67,7 @@ class OrgType(models.Model):
 
 
 class Student(models.Model):
-	ss_number = models.IntegerField(primary_key=True)
+	ss_number = models.IntegerField()
 	name = models.CharField(max_length=228)
 	date_of_birth = models.DateTimeField(blank=True, null=True)
 	sex = models.IntegerField(blank=True, null=True)
@@ -77,8 +77,15 @@ class Student(models.Model):
 		return self.name
 
 
+class Class(models.Model):
+	name = models.CharField(max_length=228)
+	students = models.ManyToManyField(Student, related_name='students')
+	parent_org = models.ForeignKey(Org, related_name='parent_org')
+	associated_teacher = models.ForeignKey(User, blank=True, related_name='associated_teacher', null=True)
+	year = models.DateField(auto_now = False, auto_now_add = False)
 
 
-
+	def __unicode__(self):
+		return self.name
 
 
